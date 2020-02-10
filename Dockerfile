@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi7/ubi AS builder
+FROM docker.io/library/centos:7 AS builder
 
 ENV pkg=yum \
     install_config="yum-utils" \
@@ -14,7 +14,7 @@ RUN set -eux ; \
         man \
         file \
         sudo \
-        git \
+        git-all \
         vim \
         curl \
         zip \
