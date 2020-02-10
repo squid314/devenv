@@ -1,20 +1,22 @@
-FROM registry.access.redhat.com/ubi8/ubi AS builder
+FROM registry.access.redhat.com/ubi7/ubi AS builder
 
-ENV pkg=dnf \
-    install_config="dnf-command(config-manager)" \
-    pkg_config="dnf config-manager"
+ENV pkg=yum \
+    install_config="yum-utils" \
+    pkg_config="yum-config-manager"
 RUN set -eux ; \
+    sed -ie /^tsflags=nodocs$/s/^/#/ /etc/yum.conf ; \
     $pkg install -y $install_config ; \
     $pkg_config --add-repo https://download.docker.com/linux/centos/docker-ce.repo ; \
     $pkg makecache -y ; \
     $pkg update -y ; \
-    $pkg reinstall -y $($pkg list -y installed | sed -e '/^ /d' -e 's/\..*//' -e '/^filesystem/d') ; \
+    $pkg reinstall -y $($pkg list -q -y installed | sed -e 1d -e '/^ /d' -e 's/\..*//') ; \
     $pkg install -y \
         man \
         file \
         sudo \
         git \
         vim \
+        curl \
         zip \
         bzip2 \
         rsync \
