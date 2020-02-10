@@ -1,10 +1,11 @@
 FROM registry.access.redhat.com/ubi8/ubi
 
+ENV pkg=dnf
 RUN set -eux ; \
-    dnf makecache -y ; \
-    dnf reinstall -y $(dnf list -y installed | sed -e '/^ /d' -e 's/\..*//' -e '/^filesystem/d') ; \
-    dnf update -y ; \
-    dnf install -y \
+    $pkg makecache -y ; \
+    $pkg update -y ; \
+    $pkg reinstall -y $($pkg list -y installed | sed -e '/^ /d' -e 's/\..*//' -e '/^filesystem/d') ; \
+    $pkg install -y \
         man \
         file \
         sudo \
@@ -20,8 +21,8 @@ RUN set -eux ; \
             alternatives --install /usr/local/bin/$i $i /usr/bin/$j ${#j} ; \
         done ; \
     done ; \
-    dnf clean all ; \
-    rm -rf /var/cache/dnf
+    $pkg clean all ; \
+    rm -rf /var/cache/$pkg
 
 # up-to-date java
 ENV LANG=en_US.UTF-8 \
