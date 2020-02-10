@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/ubi AS builder
+FROM docker.io/library/centos:8 AS builder
 
 ENV pkg=dnf \
     install_config="dnf-command(config-manager)" \
@@ -13,7 +13,7 @@ RUN set -eux ; \
         man \
         file \
         sudo \
-        git \
+        git-all \
         vim \
         zip \
         bzip2 \
