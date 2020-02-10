@@ -1,33 +1,28 @@
-FROM registry.access.redhat.com/ubi8/ubi
+FROM docker.io/library/debian:buster
 
-ENV pkg=dnf \
-    install_config="dnf-command(config-manager)" \
-    pkg_config="dnf config-manager"
+ENV pkg=apt-get
 RUN set -eux ; \
-    $pkg install -y $install_config ; \
-    $pkg_config --add-repo https://download.docker.com/linux/centos/docker-ce.repo ; \
-    $pkg makecache -y ; \
-    $pkg update -y ; \
-    $pkg reinstall -y $($pkg list -y installed | sed -e '/^ /d' -e 's/\..*//' -e '/^filesystem/d') ; \
+    $pkg update ; \
+    $pkg install -y curl gnupg ; \
+    curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - ; \
+    add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable" ; \
+    $pkg upgrade -y ; \
     $pkg install -y \
-        man \
-        file \
         sudo \
-        git \
+        git-all \
         vim \
+        curl \
         zip \
         bzip2 \
         openssl \
-        openssh \
+        openssh-client \
         docker-ce-cli \
+        apt-transport-https \
+        ca-certificates \
+        gnupg2 \
+        software-properties-common \
     ; \
-    for i in ex {,r}vi{,ew} ; do \
-        for j in vi vim ; do \
-            alternatives --install /usr/local/bin/$i $i /usr/bin/$j ${#j} ; \
-        done ; \
-    done ; \
-    $pkg clean all ; \
-    rm -rf /var/cache/{yum,dnf}
+    rm -rf /var/lib/apt/lists/*
 
 RUN set -eux ; \
     groupadd -g 1111 squid ; \
