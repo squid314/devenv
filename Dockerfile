@@ -1,11 +1,12 @@
-FROM registry.access.redhat.com/ubi8/ubi
+FROM quay.io/centos/centos:stream8
 
 ENV pkg=dnf \
     install_config="dnf-command(config-manager)" \
     pkg_config="dnf config-manager" \
-    epel="https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm"
+    epel="epel-next-release"
 RUN set -eux ; \
     $pkg install -y $install_config ; \
+    $pkg_config --set-enabled powertools ; \
     $pkg install -y $epel ; \
     $pkg_config --add-repo https://download.docker.com/linux/centos/docker-ce.repo ; \
     $pkg makecache -y ; \
@@ -14,8 +15,10 @@ RUN set -eux ; \
     $pkg install -y \
         man \
         file \
+        bash-completion \
         sudo \
         git \
+        git-subtree \
         vim \
         zip \
         bzip2 \
