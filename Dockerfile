@@ -2,6 +2,7 @@ FROM registry.access.redhat.com/ubi8/ubi
 
 ENV pkg=dnf
 RUN set -eux ; \
+    $pkg config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo ; \
     $pkg makecache -y ; \
     $pkg update -y ; \
     $pkg reinstall -y $($pkg list -y installed | sed -e '/^ /d' -e 's/\..*//' -e '/^filesystem/d') ; \
@@ -15,6 +16,7 @@ RUN set -eux ; \
         bzip2 \
         openssl \
         openssh \
+        docker-ce-cli \
     ; \
     for i in ex {,r}vi{,ew} ; do \
         for j in vi vim ; do \
