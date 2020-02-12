@@ -24,7 +24,7 @@ RUN set -eux ; \
         done ; \
     done ; \
     $pkg clean all ; \
-    rm -rf /var/cache/$pkg
+    rm -rf /var/cache/{yum,dnf}
 
 RUN set -eux ; \
     groupadd -g 1111 squid ; \
