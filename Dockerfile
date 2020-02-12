@@ -1,44 +1,23 @@
-FROM registry.access.redhat.com/ubi8/ubi-minimal
+FROM quay.io/squid314/devenv:java-13
 
-ENV pkg=microdnf
+ENV \
+    SCALA_HOME=/usr/scala/scala \
+    SCALA_VERSION=2.13.1 \
+    SCALA_URL=https://downloads.lightbend.com/scala/2.13.1/scala-2.13.1.tgz \
+    SCALA_SHA256=6918ccc494e34810a7254ad2c4e6f0e1183784c22e7b4801b7dbc8d1994a04db
 RUN set -eux ; \
-    $pkg update -y ; \
-    $pkg install -y \
-        tar \
-        gzip \
-    ; \
-    $pkg clean all ; \
-    rm -rf /var/cache/{yum,dnf}
-
-# up-to-date java
-ENV LANG=en_US.UTF-8 \
-    JAVA_HOME=/usr/java/openjdk-13 \
-    JAVA_VERSION=13.0.2 \
-    JAVA_URL=https://download.java.net/java/GA/jdk13.0.2/d4173c853231432d94f001e99d882ca7/8/GPL/openjdk-13.0.2_linux-x64_bin.tar.gz \
-    JAVA_SHA256=acc7a6aabced44e62ec3b83e3b5959df2b1aa6b3d610d58ee45f0c21a7821a71
-RUN set -eux ; \
-    curl -sfL -o /openjdk.tgz "$JAVA_URL" ; \
-    echo "$JAVA_SHA256 */openjdk.tgz" | sha256sum -c - ; \
-    mkdir -p "$JAVA_HOME" ; \
-    tar --extract --verbose --file /openjdk.tgz --directory "$JAVA_HOME" --strip-components 1 ; \
-    rm /openjdk.tgz ; \
-    ln -sfT "$JAVA_HOME" /usr/java/default ; \
-    ln -sfT "$JAVA_HOME" /usr/java/latest ; \
-    for bin in "$JAVA_HOME/bin/"* ; do \
+    curl -sfLo /scala.tgz "$SCALA_URL" ; \
+    echo "$SCALA_SHA256 */scala.tgz" | sha256sum -c - ; \
+    mkdir -p "$SCALA_HOME" ; \
+    tar --extract --verbose --file /scala.tgz --directory "$SCALA_HOME" --strip-components 1 ; \
+    rm /scala.tgz ; \
+    ln -sfT "$SCALA_HOME" /usr/scala/default ; \
+    ln -sfT "$SCALA_HOME" /usr/scala/latest ; \
+    for bin in "$SCALA_HOME/bin/"* ; do \
         base="$(basename "$bin")" ; \
         [ ! -e "/usr/bin/$base" ] ; \
         alternatives --install "/usr/bin/$base" "$base" "$bin" 20000 ; \
     done ; \
-    java -Xshare:dump ; \
-    java --version ; \
-    javac --version
+    scala --version
 
-ARG WORKDIR=/workdir
-ENV WORKDIR=$WORKDIR
-RUN set -eux ; \
-    mkdir -p $WORKDIR ; \
-    touch $WORKDIR/.userhold
-VOLUME  $WORKDIR
-WORKDIR $WORKDIR
-
-CMD ["/usr/bin/jshell"]
+CMD ["/usr/bin/scala"]
