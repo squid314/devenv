@@ -1,8 +1,11 @@
 FROM registry.access.redhat.com/ubi8/ubi
 
-ENV pkg=dnf
+ENV pkg=dnf \
+    install_config="dnf-command(config-manager)" \
+    pkg_config="dnf config-manager"
 RUN set -eux ; \
-    $pkg config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo ; \
+    $pkg install -y $install_config ; \
+    $pkg_config --add-repo https://download.docker.com/linux/centos/docker-ce.repo ; \
     $pkg makecache -y ; \
     $pkg update -y ; \
     $pkg reinstall -y $($pkg list -y installed | sed -e '/^ /d' -e 's/\..*//' -e '/^filesystem/d') ; \
