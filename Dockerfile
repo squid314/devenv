@@ -17,6 +17,7 @@ RUN set -eux ; \
         vim \
         zip \
         bzip2 \
+        rsync \
         openssl \
         openssh \
         docker-ce-cli \
