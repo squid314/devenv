@@ -1,4 +1,4 @@
-FROM quay.io/squid314/devenv:java-13
+FROM quay.io/squid314/devenv:java-14
 
 ENV \
     SCALA_HOME=/usr/scala/scala \
