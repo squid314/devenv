@@ -13,6 +13,7 @@ RUN set -eux ; \
     $pkg install -y \
         man \
         file \
+        bash-completion \
         sudo \
         git-all \
         vim \
