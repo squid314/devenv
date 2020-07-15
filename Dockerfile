@@ -14,7 +14,7 @@ RUN set -eux ; \
 ENV LANG=en_US.UTF-8 \
     JAVA_HOME=/usr/java/openjdk-14
 ENV JAVA_VERSION 14.0.2
-ENV JAVA_URL https://download.java.net/java/GA/jdk$JAVA_VERSION/205943a0976c4ed48cb16f1043c5c647/12/GPL/openjdk-$JAVA_VERSION_linux-x64_bin.tar.gz
+ENV JAVA_URL https://download.java.net/java/GA/jdk${JAVA_VERSION}/205943a0976c4ed48cb16f1043c5c647/12/GPL/openjdk-${JAVA_VERSION}_linux-x64_bin.tar.gz
 ENV JAVA_SHA256 91310200f072045dc6cef2c8c23e7e6387b37c46e9de49623ce0fa461a24623d
 RUN set -eux ; \
     curl -sfL -o /openjdk.tgz "$JAVA_URL" ; \
