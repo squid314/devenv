@@ -20,7 +20,7 @@ RUN set -eux ; \
     curl -sfL -o /openjdk.tgz "$JAVA_URL" ; \
     echo "$JAVA_SHA256 */openjdk.tgz" | sha256sum -c - ; \
     mkdir -p "$JAVA_HOME" ; \
-    tar --extract --verbose --file /openjdk.tgz --directory "$JAVA_HOME" --strip-components 1 ; \
+    tar --extract --verbose --preserve-order --preserve-permissions --no-same-owner --file /openjdk.tgz --directory "$JAVA_HOME" --strip-components 1 ; \
     rm /openjdk.tgz ; \
     ln -sfT "$JAVA_HOME" /usr/java/default ; \
     ln -sfT "$JAVA_HOME" /usr/java/latest ; \
