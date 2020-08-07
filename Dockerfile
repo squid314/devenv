@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/ubi
+FROM registry.access.redhat.com/ubi8/ubi AS builder
 
 ENV pkg=dnf \
     install_config="dnf-command(config-manager)" \
@@ -39,16 +39,19 @@ RUN set -eux ; \
 USER squid
 WORKDIR /home/squid
 
-RUN mkdir -p /home/squid/{dev,tmp} && \
-    touch /home/squid/{dev,tmp}/.userhold && \
-    chown -R squid:squid /home/squid
-VOLUME /home/squid/dev
-VOLUME /home/squid/tmp
-
 RUN set -eux ; \
+    mkdir /home/squid/{dev,tmp} ; \
+    touch /home/squid/{dev,tmp}/.userhold ; \
     curl -svLo /tmp/setup.sh https://a.blmq.us/setup-sh ; \
     bash /tmp/setup.sh docker ; \
     rm /tmp/setup.sh ; \
     ln -s dev/.bin .bin
 
+
+FROM scratch
+COPY --from=builder / /
+USER squid
+WORKDIR /home/squid
+VOLUME /home/squid/dev
+VOLUME /home/squid/tmp
 CMD ["/bin/bash", "-il"]
