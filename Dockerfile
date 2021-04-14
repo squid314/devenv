@@ -21,6 +21,7 @@ RUN set -eux ; \
         openssl \
         openssh \
         docker-ce-cli \
+        bind-utils \
     ; \
     for i in ex {,r}vi{,ew} ; do \
         for j in vi vim ; do \
