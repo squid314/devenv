@@ -8,7 +8,7 @@ RUN set -eux ; \
     $pkg_config --add-repo https://download.docker.com/linux/centos/docker-ce.repo ; \
     $pkg makecache -y ; \
     $pkg update -y ; \
-    $pkg reinstall -y $($pkg list -y installed | sed -e '/^ /d' -e 's/\..*//' -e '/^filesystem/d') ; \
+    $pkg reinstall -y $(rpm -qa --qf='%{NAME}\n') ; \
     $pkg install -y \
         man \
         file \
