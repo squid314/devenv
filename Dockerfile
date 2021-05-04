@@ -2,9 +2,11 @@ FROM registry.access.redhat.com/ubi8/ubi
 
 ENV pkg=dnf \
     install_config="dnf-command(config-manager)" \
-    pkg_config="dnf config-manager"
+    pkg_config="dnf config-manager" \
+    epel="https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm"
 RUN set -eux ; \
     $pkg install -y $install_config ; \
+    $pkg install -y $epel ; \
     $pkg_config --add-repo https://download.docker.com/linux/centos/docker-ce.repo ; \
     $pkg makecache -y ; \
     $pkg update -y ; \
