@@ -12,10 +12,10 @@ RUN set -eux ; \
 
 # up-to-date java
 ENV LANG=en_US.UTF-8 \
-    JAVA_HOME=/usr/java/openjdk-16
-ENV JAVA_VERSION=16.0.2 \
-    JAVA_URL=https://download.java.net/java/GA/jdk16.0.2/d4a915d82b4c4fbb9bde534da945d746/7/GPL/openjdk-16.0.2_linux-x64_bin.tar.gz \
-    JAVA_SHA256=6c714ded7d881ca54970ec949e283f43d673a142fda1de79b646ddd619da9c0c
+    JAVA_HOME=/usr/java/openjdk-17
+ENV JAVA_VERSION=17 \
+    JAVA_URL=https://download.java.net/java/GA/jdk17/0d483333a00540d886896bac774ff48b/35/GPL/openjdk-17_linux-x64_bin.tar.gz \
+    JAVA_SHA256=aef49cc7aa606de2044302e757fa94c8e144818e93487081c4fd319ca858134b
 RUN set -eux ; \
     curl -sfL -o /openjdk.tgz "$JAVA_URL" ; \
     echo "$JAVA_SHA256 */openjdk.tgz" | sha256sum -c - ; \
