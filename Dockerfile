@@ -1,9 +1,9 @@
-FROM quay.io/squid314/devenv:java-16
+FROM quay.io/squid314/devenv:java-17
 
 ENV SCALA_HOME /usr/scala/scala-2.13
-ENV SCALA_VERSION 2.13.6
+ENV SCALA_VERSION 2.13.7
 ENV SCALA_URL https://downloads.lightbend.com/scala/$SCALA_VERSION/scala-$SCALA_VERSION.tgz
-ENV SCALA_SHA256 49df92503cd11cc3c649683db368e5878b7e792e40156d2377e52326e935ed43
+ENV SCALA_SHA256 14ef16008786bc7b37135b284be624507701f651396d16fd8a48a35a4bcea94e
 RUN set -eux ; \
     curl -sfLo /scala.tgz "$SCALA_URL" ; \
     echo "$SCALA_SHA256 */scala.tgz" | sha256sum -c - ; \
