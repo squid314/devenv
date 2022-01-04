@@ -24,6 +24,7 @@ RUN set -eux ; \
         openssh \
         docker-ce-cli \
         bind-utils \
+        python39 \
     ; \
     for i in ex {,r}vi{,ew} ; do \
         for j in vi vim ; do \
