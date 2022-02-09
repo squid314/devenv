@@ -1,12 +1,12 @@
-FROM quay.io/centos/centos:stream8
+FROM quay.io/centos/centos:stream9
 
 ENV pkg=dnf \
     install_config="dnf-command(config-manager)" \
     pkg_config="dnf config-manager" \
-    epel="epel-next-release"
+    epel="https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm https://dl.fedoraproject.org/pub/epel/epel-next-release-latest-9.noarch.rpm"
 RUN set -eux ; \
     $pkg install -y $install_config ; \
-    $pkg_config --set-enabled powertools ; \
+    $pkg_config --set-enabled crb ; \
     $pkg install -y $epel ; \
     $pkg_config --add-repo https://download.docker.com/linux/centos/docker-ce.repo ; \
     $pkg makecache -y ; \
