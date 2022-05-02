@@ -13,9 +13,9 @@ RUN set -eux ; \
 # up-to-date java
 ENV LANG=en_US.UTF-8 \
     JAVA_HOME=/usr/java/openjdk-18
-ENV JAVA_VERSION=18.0.1 \
-    JAVA_URL=https://download.java.net/java/GA/jdk18.0.1/3f48cabb83014f9fab465e280ccf630b/10/GPL/openjdk-18.0.1_linux-x64_bin.tar.gz \
-    JAVA_SHA256=56b06ade89a6a0f941682e7b2bc4039a105ddaa9bc10cad85bb426b9eb503943
+ENV JAVA_VERSION=18.0.1.1 \
+    JAVA_URL=https://download.java.net/java/GA/jdk18.0.1.1/65ae32619e2f40f3a9af3af1851d6e19/2/GPL/openjdk-18.0.1.1_linux-x64_bin.tar.gz \
+    JAVA_SHA256=4f81af7203fa4c8a12c9c53c94304aab69ea1551bc6119189c9883f4266a2b24
 RUN set -eux ; \
     curl -sfL -o /openjdk.tgz "$JAVA_URL" ; \
     echo "$JAVA_SHA256 */openjdk.tgz" | sha256sum -c - ; \
