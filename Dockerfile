@@ -1,9 +1,9 @@
 FROM quay.io/squid314/devenv:java-18
 
 ENV SCALA_HOME /usr/scala/scala-3
-ENV SCALA_VERSION 3.1.3
+ENV SCALA_VERSION 3.2.0
 ENV SCALA_URL https://github.com/lampepfl/dotty/releases/download/$SCALA_VERSION/scala3-$SCALA_VERSION.tar.gz
-ENV SCALA_SHA256 9e1eefdcab77b2d2a9057b3d6f78301591e9c27513c92413f3c353a77093f2d7
+ENV SCALA_SHA256 194bd030808f6fc7de083bfd7c75230d719aedc20f3cb7562dc65d18b4a17278
 RUN set -eux ; \
     curl -sfLo /scala.tgz "$SCALA_URL" ; \
     echo "$SCALA_SHA256 */scala.tgz" | sha256sum -c - ; \
