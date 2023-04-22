@@ -12,10 +12,10 @@ RUN set -eux ; \
 
 # up-to-date java
 ENV LANG=en_US.UTF-8 \
-    JAVA_HOME=/usr/java/openjdk-19
-ENV JAVA_VERSION=19.0.2 \
-    JAVA_URL=https://download.java.net/java/GA/jdk19.0.2/fdb695a9d9064ad6b064dc6df578380c/7/GPL/openjdk-19.0.2_linux-x64_bin.tar.gz \
-    JAVA_SHA256=34cf8d095cc071e9e10165f5c45023f96ec68397fdaabf6c64bfec1ffeee6198
+    JAVA_HOME=/usr/java/openjdk-20
+ENV JAVA_VERSION=20.0.1 \
+    JAVA_URL=https://download.java.net/java/GA/jdk20.0.1/b4887098932d415489976708ad6d1a4b/9/GPL/openjdk-20.0.1_linux-x64_bin.tar.gz \
+    JAVA_SHA256=4248a3af4602dbe2aefdb7010bc9086bf34a4155888e837649c90ff6d8e8cef9
 RUN set -eux ; \
     curl -sfL -o /openjdk.tgz "$JAVA_URL" ; \
     echo "$JAVA_SHA256 */openjdk.tgz" | sha256sum -c - ; \
