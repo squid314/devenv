@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/ubi
+FROM registry.access.redhat.com/ubi9/ubi
 
 ENV pkg=dnf \
     install_config="dnf-command(config-manager)" \
