@@ -6,6 +6,7 @@ ENV SCALA_URL https://downloads.lightbend.com/scala/$SCALA_VERSION/scala-$SCALA_
 ENV SCALA_SHA256 6182dd81d2023cce527333ed785b1aa23a98e87dc855aba38ba4892dc6aaf1e3
 RUN set -eux ; \
     curl -sfLo /scala.tgz "$SCALA_URL" ; \
+    sha256sum /scala.tgz ; \
     echo "$SCALA_SHA256 */scala.tgz" | sha256sum -c - ; \
     mkdir -p "$SCALA_HOME" ; \
     tar --extract --verbose --preserve-order --preserve-permissions --no-same-owner --file /scala.tgz --directory "$SCALA_HOME" --strip-components 1 --exclude '*.bat' ; \
