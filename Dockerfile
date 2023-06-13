@@ -6,6 +6,7 @@ ENV SCALA_URL https://github.com/lampepfl/dotty/releases/download/$SCALA_VERSION
 ENV SCALA_SHA256 064ee508a8e3b9c69843102c836aa89894148022bf37af3c26a9464dfa101475
 RUN set -eux ; \
     curl -sfLo /scala.tgz "$SCALA_URL" ; \
+    sha256sum /scala.tgz ; \
     echo "$SCALA_SHA256 */scala.tgz" | sha256sum -c - ; \
     mkdir -p "$SCALA_HOME" ; \
     tar --extract --verbose --preserve-order --preserve-permissions --no-same-owner --file /scala.tgz --directory "$SCALA_HOME" --strip-components 1 --exclude '*.bat' ; \
