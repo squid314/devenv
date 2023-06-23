@@ -51,4 +51,5 @@ RUN set -eux ; \
     cd / ; \
     rm -r /tmp/warmer
 
+# TODO create a startup script to detect if there's a project in the workdir. if there is, start sbt; otherwise start scala.
 CMD ["/usr/local/bin/scala"]
