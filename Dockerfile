@@ -41,7 +41,7 @@ RUN set -eux ; \
 # Prepare sbt (warm cache)
 RUN set -eux ; \
     sbt sbtVersion ; \
-    mkdir -p /tmp/warmer/project ; \
+    mkdir /tmp/warmer{,/project} ; \
     cd /tmp/warmer ; \
     echo "scalaVersion := \"${SCALA_VERSION}\"" > build.sbt ; \
     echo "sbt.version=${SBT_VERSION}" > project/build.properties ; \
