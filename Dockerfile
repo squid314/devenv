@@ -1,4 +1,4 @@
-FROM quay.io/squid314/devenv:java-20
+FROM quay.io/squid314/devenv:java-21
 
 ENV SBT_VERSION=1.9.5 \
     SBT_SHA256=96755059651f82d3ae5f65ec9a61259c3c0af3a0c80344e89a811346cada1e5e
