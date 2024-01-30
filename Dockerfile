@@ -13,9 +13,9 @@ RUN set -eux ; \
 # up-to-date java
 ENV LANG=en_US.UTF-8 \
     JAVA_HOME=/usr/java/openjdk-21
-ENV JAVA_VERSION=21.0.1 \
-    JAVA_URL=https://download.java.net/java/GA/jdk21.0.1/415e3f918a1f4062a0074a2794853d0d/12/GPL/openjdk-21.0.1_linux-x64_bin.tar.gz \
-    JAVA_SHA256=7e80146b2c3f719bf7f56992eb268ad466f8854d5d6ae11805784608e458343f
+ENV JAVA_VERSION=21.0.2 \
+    JAVA_URL=https://download.java.net/java/GA/jdk21.0.2/f2283984656d49d69e91c558476027ac/13/GPL/openjdk-21.0.2_linux-x64_bin.tar.gz \
+    JAVA_SHA256=a2def047a73941e01a73739f92755f86b895811afb1f91243db214cff5bdac3f
 RUN set -eux ; \
     curl -sfL -o /openjdk.tgz "$JAVA_URL" ; \
     echo "$JAVA_SHA256 */openjdk.tgz" | sha256sum -c - ; \
