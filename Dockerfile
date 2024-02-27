@@ -19,6 +19,7 @@ RUN set -eux ; \
         vim \
         zip \
         bzip2 \
+        xz \
         rsync \
         openssl \
         openssh \
