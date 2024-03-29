@@ -1,7 +1,7 @@
 FROM quay.io/squid314/devenv:java-20
 
-ENV SBT_VERSION=1.9.4 \
-    SBT_SHA256=68bd0225c29da39b2cfb25b6770a919f69e47621bb250112152742d7f29ab870
+ENV SBT_VERSION=1.9.9 \
+    SBT_SHA256=c57cae60c2122ca1bba77184dfb4d0d25fc6c18805394ab36ab6208b0c0f262f
 
 # sbt and scala setup cloned from https://github.com/sbt/docker-sbt
 RUN set -eux ; \
