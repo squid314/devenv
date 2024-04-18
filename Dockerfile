@@ -1,4 +1,4 @@
-FROM quay.io/squid314/devenv:java-21
+FROM quay.io/squid314/devenv:java-22
 
 ENV SCALA_HOME /usr/scala/scala-3
 ENV SCALA_VERSION 3.4.1
