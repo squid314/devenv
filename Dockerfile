@@ -13,9 +13,9 @@ RUN set -eux ; \
 # up-to-date java
 ENV LANG=en_US.UTF-8 \
     JAVA_HOME=/usr/java/openjdk-22
-ENV JAVA_VERSION=22.0.1 \
-    JAVA_URL=https://download.java.net/java/GA/jdk22.0.1/c7ec1332f7bb44aeba2eb341ae18aca4/8/GPL/openjdk-22.0.1_linux-x64_bin.tar.gz \
-    JAVA_SHA256=133c8b65113304904cdef7c9103274d141cfb64b191ff48ceb6528aca25c67b1
+ENV JAVA_VERSION=22.0.2 \
+    JAVA_URL=https://download.java.net/java/GA/jdk22.0.2/c9ecb94cd31b495da20a27d4581645e8/9/GPL/openjdk-22.0.2_linux-x64_bin.tar.gz \
+    JAVA_SHA256=41536f115668308ecf4eba92aaf6acaeb0936225828b741efd83b6173ba82963
 RUN set -eux ; \
     curl -sfL -o /openjdk.tgz "$JAVA_URL" ; \
     echo "$JAVA_SHA256 */openjdk.tgz" | sha256sum -c - ; \
