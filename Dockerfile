@@ -22,8 +22,8 @@ RUN set -eux ; \
     cd / ; \
     rm -r /tmp/warmer
 
-ENV SCALA_VERSION=3.4.2 \
-    SCALA_SHA256=2447f095126c6532a4d0300896c87e5350e8ce6e14417c1578b4a4348187304b
+ENV SCALA_VERSION=3.4.3 \
+    SCALA_SHA256=54badb7e2ec5b5970d598589151cb2eded932ce438f0c8b9ceb05f1b1268fa72
 RUN set -eux ; \
     case $SCALA_VERSION in \
         "3"*) URL=https://github.com/lampepfl/dotty/releases/download/$SCALA_VERSION/scala3-$SCALA_VERSION.tar.gz SCALA_DIR=/usr/share/scala3-$SCALA_VERSION ;; \
